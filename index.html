@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Flower for You 🌸</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #ffdee9, #b5fffc);
+      margin: 0;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 30px;
+    }
+
+    .flower {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      animation: grow 2s ease-out forwards;
+      transform-origin: bottom center;
+    }
+
+    .stem {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 10px;
+      height: 100px;
+      background: green;
+      border-radius: 5px;
+      transform: translateX(-50%) scaleY(0);
+      animation: stemGrow 2s ease-out forwards;
+    }
+
+    .petal {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background: pink;
+      border-radius: 50%;
+      opacity: 0;
+      animation: bloom 1s ease-out forwards;
+    }
+
+    .petal:nth-child(2) { top: 0; left: 50%; transform: translate(-50%, -50%); animation-delay: 2s; }
+    .petal:nth-child(3) { bottom: 0; left: 50%; transform: translate(-50%, 50%); animation-delay: 2.2s; }
+    .petal:nth-child(4) { left: 0; top: 50%; transform: translate(-50%, -50%); animation-delay: 2.4s; }
+    .petal:nth-child(5) { right: 0; top: 50%; transform: translate(50%, -50%); animation-delay: 2.6s; }
+    .petal:nth-child(6) { top: 25%; left: 25%; animation-delay: 2.8s; }
+    .petal:nth-child(7) { top: 25%; right: 25%; animation-delay: 3s; }
+    .petal:nth-child(8) { bottom: 25%; left: 25%; animation-delay: 3.2s; }
+    .petal:nth-child(9) { bottom: 25%; right: 25%; animation-delay: 3.4s; }
+
+    .center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 40px;
+      height: 40px;
+      background: yellow;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      animation: bloom 1s ease-out forwards;
+      animation-delay: 3.6s;
+    }
+
+    .buttons {
+      margin-top: 40px;
+      display: flex;
+      gap: 15px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      background: #ff4d6d;
+      color: white;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      background: #ff1e4d;
+    }
+
+    /* Animations */
+    @keyframes stemGrow {
+      from { transform: translateX(-50%) scaleY(0); }
+      to { transform: translateX(-50%) scaleY(1); }
+    }
+
+    @keyframes bloom {
+      from { transform: scale(0); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes grow {
+      from { transform: scale(0.5); }
+      to { transform: scale(1); }
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .spin {
+      animation: spin 2s linear infinite;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌸 A Flower for You 🌸</h1>
+  <h2>By Penny</h2>
+
+  <div class="flower" id="flower">
+    <div class="stem"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="center"></div>
+  </div>
+
+  <div class="buttons">
+    <button onclick="bloomAgain()">🌼 Bloom Again</button>
+    <button onclick="spinFlower()">✨ Spin</button>
+    <button onclick="alert('🌸 You got a flower from Penny! 🌸')">💌 Surprise</button>
+  </div>
+
+  <script>
+    function bloomAgain() {
+      const flower = document.getElementById("flower");
+      flower.innerHTML = `
+        <div class="stem"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="center"></div>
+      `;
+    }
+
+    function spinFlower() {
+      const flower = document.getElementById("flower");
+      flower.classList.add("spin");
+      setTimeout(() => flower.classList.remove("spin"), 4000);
+    }
+  </script>
+</body>
+</html>
